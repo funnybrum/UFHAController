@@ -3,9 +3,11 @@
 #include "SettingsBase.h"
 #include "WiFi.h"
 #include "Actuator.h"
+#include "InfluxDBCollector.h"
 
 struct SettingsData {
     NetworkSettings network;
+    InfluxDBCollectorSettings influxDB;
     ActuatorSettings actuator1;
     ActuatorSettings actuator2;
     ActuatorSettings actuator3;

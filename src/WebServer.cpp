@@ -22,6 +22,7 @@ void WebServer::handle_root() {
 
 void WebServer::handle_settings() {
     wifi.parse_config_params(this);
+    dataCollector.parse_config_params(this);
     actuators[0]->parse_config_params(this);
     actuators[1]->parse_config_params(this);
     actuators[2]->parse_config_params(this);
@@ -33,6 +34,9 @@ void WebServer::handle_settings() {
 
     char network_settings[strlen_P(NETWORK_CONFIG_PAGE) + 32];
     wifi.get_config_page(network_settings);
+
+    char data_collector_settings[strlen_P(INFLUXDB_CONFIG_PAGE) + 64];
+    dataCollector.get_config_page(data_collector_settings);
 
     char actuator0_config_page[strlen_P(ACTUATOR_CONFIG_PAGE) + 32];
     actuators[0]->get_config_page(actuator0_config_page);
@@ -62,6 +66,7 @@ void WebServer::handle_settings() {
         buffer,
         CONFIG_PAGE,
         network_settings,
+        data_collector_settings,
         actuator0_config_page,
         actuator1_config_page,
         actuator2_config_page,

@@ -7,6 +7,7 @@ Settings::Settings()
 
 void Settings::initializeSettings() {
     strcpy(settingsData.network.hostname, HOSTNAME);
+    settingsData.influxDB.enable = false;
     settingsData.actuator1.type = NC;
     settingsData.actuator2.type = NC;
     settingsData.actuator3.type = NC;

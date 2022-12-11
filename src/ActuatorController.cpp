@@ -5,6 +5,7 @@ Settings settings = Settings();
 
 WiFiManager wifi = WiFiManager(&logger, &settings.getSettings()->network);
 WebServer webServer = WebServer(&logger, &settings.getSettings()->network);
+DataCollector dataCollector = DataCollector();
 Actuator* actuators[] = {
     new Actuator(D1, 1, &settings.getSettings()->actuator1),
     new Actuator(D2, 2, &settings.getSettings()->actuator2),
@@ -32,12 +33,14 @@ void setup()
     }
 
     wifi.connect();
+    dataCollector.begin();
 }
 
 void loop() {
     wifi.loop();
     webServer.loop();
     settings.loop();
+    dataCollector.loop();
 
     for (int i=0; i<8; i++) {
         actuators[i]->loop();

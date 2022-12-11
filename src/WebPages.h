@@ -6,6 +6,7 @@ const char CONFIG_PAGE[] PROGMEM = R"=====(
  <BODY>
   <form action="/settings" method="get">
    %s<br><br>
+   %s<br><br>
    <fieldset style='display: inline-block; width: 300px'>
    <legend>Actuator types</legend>
    %s
